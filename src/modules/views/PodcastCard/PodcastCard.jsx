@@ -4,7 +4,6 @@ import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,10 +15,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   paper: {
-    padding: theme.spacing(4, 3),
-    [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(8, 6)
-    }
+    padding: theme.spacing(2)
   }
 }));
 
@@ -38,15 +34,13 @@ function PodcastCard() {
           </Grid>
           <Grid item container direction="column" md spacing={1}>
             <Grid item>
-              <Typography variant="h3">Podcast</Typography>
+              <Typography variant="h4">Podcast</Typography>
             </Grid>
             <Grid item>
               <Typography variant="caption">By Author</Typography>
             </Grid>
             <Grid item>
-              <div className={classes.root}>
-                <Chip label="Basic" variant="outlined" />
-              </div>
+              <div className={classes.root}></div>
             </Grid>
             <Grid item>
               <Typography variant="body1">
