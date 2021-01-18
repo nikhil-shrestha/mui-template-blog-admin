@@ -7,10 +7,6 @@ import { RouteWithLayout } from './components';
 
 import Home from '../pages/Home';
 import Search from '../pages/Search';
-import Dashboard from '../pages/Dashboard';
-// import SignIn from '../pages/SignIn';
-// import SignUp from '../pages/SignUp';
-// import ForgotPassword from '../pages/ForgotPassword';
 
 const Routes = () => (
   <Switch>
@@ -21,30 +17,6 @@ const Routes = () => (
       component={Search}
       layout={MainLayout}
     />
-    <RouteWithLayout
-      exact
-      path="/dashboard"
-      component={Dashboard}
-      layout={DashboardLayout}
-    />
-    {/* <RouteWithLayout
-      exact
-      path="/sign-in"
-      component={SignIn}
-      layout={MainLayout}
-    />
-    <RouteWithLayout
-      exact
-      path="/sign-up"
-      component={SignUp}
-      layout={MainLayout}
-    />
-    <RouteWithLayout
-      exact
-      path="/forgot-password"
-      component={ForgotPassword}
-      layout={MainLayout}
-    /> */}
   </Switch>
 );
 
