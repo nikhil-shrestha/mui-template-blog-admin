@@ -10,7 +10,8 @@ function Index(props) {
 
   const [query, setQuery] = useState('');
 
-  const onSubmit = async () => {
+  const onSubmit = async (e) => {
+    e.preventDefault();
     onFetchDataStart(query, history);
   };
 

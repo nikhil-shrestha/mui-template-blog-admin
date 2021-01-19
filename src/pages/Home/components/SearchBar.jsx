@@ -30,7 +30,7 @@ export default function CustomizedInputBase(props) {
   const { query, setQuery, onSubmit } = props;
 
   return (
-    <Paper component="form" className={classes.root}>
+    <Paper component="form" className={classes.root} onSubmit={onSubmit}>
       <InputBase
         className={classes.input}
         placeholder='Trending: "Tony Hsieh"'
@@ -39,7 +39,7 @@ export default function CustomizedInputBase(props) {
         onChange={(e) => setQuery(e.target.value)}
       />
       <IconButton
-        type="button"
+        type="submits"
         className={classes.iconButton}
         aria-label="search"
         onClick={onSubmit}
