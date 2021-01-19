@@ -8,14 +8,21 @@ import { RouteWithLayout } from './components';
 import Home from '../pages/Home';
 import Search from '../pages/Search';
 
-const Routes = () => (
+const Routes = (props) => (
   <Switch>
-    <RouteWithLayout exact path="/" component={Home} layout={MainLayout} />
+    <RouteWithLayout
+      exact
+      path="/"
+      component={Home}
+      layout={MainLayout}
+      {...props}
+    />
     <RouteWithLayout
       exact
       path="/search"
       component={Search}
       layout={MainLayout}
+      {...props}
     />
   </Switch>
 );
