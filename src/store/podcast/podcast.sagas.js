@@ -5,7 +5,7 @@ import * as actionTypes from './podcast.types';
 import * as actions from './podcast.actions';
 
 export function* listPodcastAsync({ payload: { page = 0, size = 25 } }) {
-  const url = new URL('http://localhost:8080/api/v1/podcast');
+  const url = new URL('http://54.219.96.30:8080/api/v1/podcast');
   const params = { page, size };
   url.search = new URLSearchParams(params).toString();
 
