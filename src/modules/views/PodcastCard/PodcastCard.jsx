@@ -1,76 +1,89 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(2)
+  root: {
+    flexGrow: 1
   },
-  media: {
-    height: 0,
-    paddingTop: '56.25%' // 16:9
+  paper: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: 500
+  },
+  image: {
+    width: 128,
+    height: 128
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%'
   }
 }));
 
-function PodcastCard(props) {
+export default function PodcastCard(props) {
   const classes = useStyles();
 
-  const { data } = props;
+  const { data, viewDisable, setCurrentPodcast, history } = props;
 
-  const { collectionName: name, author, artworkUrl100, genres = [] } = data;
+  const {
+    collectionName: name,
+    author,
+    artworkUrl100,
+    genres = [],
+    collectionId
+  } = data;
+
+  const handleClickView = (podcast) => {
+    setCurrentPodcast(podcast);
+    history.push(`/podcast/${podcast.collectionId}`);
+  };
 
   return (
     <Box mt={5} mb={5}>
-      <Card>
-        <CardContent>
-          <Grid container direction="column" spacing={3}>
-            <Grid item container spacing={2}>
-              <Grid item md={2} xs={4}>
-                <div className={classes.cardWrapper}>
-                  <CardMedia
-                    className={classes.media}
-                    image={artworkUrl100.toString()}
-                    title={name}
-                  />
-                </div>
-              </Grid>
-              <Grid item container direction="column" spacing={1} md xs>
-                <Grid item>
-                  <Typography variant="h4" component="h3">
-                    {name}
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant="caption">By {author}</Typography>
-                </Grid>
-                <Grid item>
-                  <div className={classes.root}>
-                    {genres.map((key) => key + ', ')}
-                  </div>
-                </Grid>
-              </Grid>
-
-              {/* <Grid item>
-                <Typography variant="body1">
-                  Learn french with podcasts ! Every week, Hellofrench gives you
-                  a free podcast to learn french. Listening the news in slow
-                  french is one of the best way to improve your french
-                  comprehension. At the end of each podcast we give you an
-                  explanation of all complicated words. Check
-                  https://www.hellofrenchp...
+      <Paper className={classes.paper}>
+        <Grid container spacing={2}>
+          <Grid item>
+            <ButtonBase className={classes.image}>
+              <img
+                className={classes.img}
+                alt="name"
+                src={artworkUrl100.toString()}
+              />
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle1">
+                  {name}
                 </Typography>
-              </Grid> */}
+                <Typography variant="body2" gutterBottom>
+                  By {author}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  {genres.map((key) => key + ', ')}
+                </Typography>
+              </Grid>
+              {!viewDisable && (
+                <Grid item>
+                  <Button color="primary" onClick={() => handleClickView(data)}>
+                    View
+                  </Button>
+                </Grid>
+              )}
             </Grid>
           </Grid>
-        </CardContent>
-      </Card>
+        </Grid>
+      </Paper>
     </Box>
   );
 }
-
-export default PodcastCard;

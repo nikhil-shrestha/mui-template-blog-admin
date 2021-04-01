@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 
-import { fetchDataStart } from 'src/store/actions';
+import { searchPodcastStart } from 'src/store/podcast/podcast.actions';
 
 const mapStateToProps = (state) => ({
-  items: state.items
+  items: state.podcast.items
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFetchDataStart: () => dispatch(fetchDataStart())
+  onFetchDataStart: () => dispatch(searchPodcastStart())
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);
